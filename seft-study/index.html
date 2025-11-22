@@ -1,39 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Website - Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
-        <div class="logo">
-            Site Logo
-        </div>
+        <div class="logo">Site Logo</div>
         <nav>
-            <a href="./index.html">Home</a>
-            <a href="">About</a>
-            <a href="./contact.html">Contact</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="index.html">About</a>
+            <a href="contact.html">Contact</a>
         </nav>
     </header>
 
-    <main>
-        <article id="article-1" class="article">
-            <h1>Welcome to the Self-Study Page</h1>
-            <p>This is a sample paragraph for the self-study page.</p>
-            <p>Contact us at: info@example.com</p>
-        </article>
+    <main id="main-content">
+        <section class="features-section">
+            <h1>Interactive Features</h1>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="openModal()">Open Modal</button>
+                <button class="btn btn-secondary" onclick="addNewArticle()">Add New Article</button>
+            </div>
+        </section>
 
-        <div class="add-article">
-            <button class="btn-primary" onclick="addNewArticle()">Add article</button>
+        <div id="articles-container">
+            <article id="article-1" class="article">
+                <h2>Welcome to Our Site</h2>
+                <p>This is a paragraph of placeholder text.</p>
+                <p>Here's another paragraph with more placeholder text.</p>
+            </article>
         </div>
-
     </main>
 
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2>Modal Window</h2>
+            <p>This is a modal dialog box. You can put any content here.</p>
+            <p>Click the X button or outside the modal to close it.</p>
+            <button class="btn btn-primary" onclick="goToContact()">Go to Contact Page</button>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2024 Self-Study Page. All rights reserved.</p>
+        <p>Contact us at: <a href="mailto:info@example.com">info@example.com</a></p>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
     </footer>
+
     <script src="main.js"></script>
 </body>
+
 </html>

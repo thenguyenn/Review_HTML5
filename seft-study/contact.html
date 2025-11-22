@@ -4,46 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>My Website - Contact</title>
+    <link rel="stylesheet" href="contact.css">
 </head>
 
 <body>
     <header>
-        <div class="logo">
-            Site Logo
-        </div>
+        <div class="logo">Site Logo</div>
         <nav>
-            <a href="./index.html">Home</a>
-            <a href="">About</a>
-            <a href="./contact.html">Contact</a>
+            <a href="index.html">Home</a>
+            <a href="index.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
         </nav>
     </header>
 
     <main>
-        <div>
-            <form id="contact-form">
-                <h2>Contact Us</h2>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+        <div class="contact-card">
+            <h1>Contact Us</h1>
+            <p class="subtitle">We'd love to hear from you! Fill out the form below.</p>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+            <form id="contact-form" novalidate>
+                <div class="form-group">
+                    <label for="name">Your Name <span class="required">*</span></label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                    <span class="error-message" id="name-error"></span>
+                </div>
 
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                    <span class="error-message" id="email-error"></span>
+                </div>
 
-                <button onclick="goBack()" type="button" ><- Back</button>
-                <button class="btn-primary" id="submit-btn" type="submit">Submit</button>
+                <div class="form-group">
+                    <label for="message">Message <span class="required">*</span></label>
+                    <textarea id="message" placeholder="Enter your message" rows="5"></textarea>
+                    <span class="error-message" id="message-error"></span>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-back" onclick="goBack()">← Back</button>
+                    <button type="submit" class="btn btn-submit">Send Message</button>
+                </div>
             </form>
+
+            <div id="success-msg" class="success-message">
+                <span class="success-icon">✓</span>
+                <p>Thank you! Your message has been sent successfully.</p>
+            </div>
         </div>
-
-
     </main>
 
     <footer>
-        <p>&copy; 2024 Self-Study Page. All rights reserved.</p>
+        <p>Contact us at: <a href="mailto:info@example.com">info@example.com</a></p>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
     </footer>
+
     <script src="contact.js"></script>
 </body>
 

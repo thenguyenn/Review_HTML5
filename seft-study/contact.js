@@ -1,50 +1,142 @@
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
-const messageInput = document.getElementById('message');
-const submitButton = document.getElementById('submit-btn');
-const backButton = document.getElementById('back-btn');
 
 function goBack() {
-    window.history.back();
+    window.location.href = 'index.html';
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    submitButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const message = messageInput.value.trim();
 
-        console.log("Tên: " + name, "Email: " + email,"Message: " + message);
-
-        if (name === '' || email === '' || message === '') {
-            alert('Please fill in all fields.');
-            return;
-        }
-        if (!validateEmail(email)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-        alert('Form submitted successfully!');
-        nameInput.value = '';
-        emailInput.value = '';
-        messageInput.value = '';
-    }
-    );
-});
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
 }
-function addNewArticle() {
-    const main = document.querySelector('main');
-    const newArticle = document.createElement('article');
-    newArticle.classList.add('article');
-    newArticle.innerHTML = `
-        <h1>New Article Title</h1>
-        <p>This is a new article added dynamically.</p>
-        <p>Contact us at:</p>
-    `;
-    main.appendChild(newArticle);
-}   
+
+function showError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    const errorElement = document.getElementById(fieldId + '-error');
+    
+    field.classList.add('error');
+    field.classList.remove('success');
+    errorElement.textContent = message;
+}
+
+function showSuccess(fieldId) {
+    const field = document.getElementById(fieldId);
+    const errorElement = document.getElementById(fieldId + '-error');
+    
+    field.classList.remove('error');
+    field.classList.add('success');
+    errorElement.textContent = '';
+}
+
+function clearValidation() {
+    const fields = ['name', 'email', 'message'];
+    fields.forEach(function(fieldId) {
+        const field = document.getElementById(fieldId);
+        const errorElement = document.getElementById(fieldId + '-error');
         
+        field.classList.remove('error', 'success');
+        errorElement.textContent = '';
+    });
+}
+
+function validateForm() {
+    let isValid = true;
+    
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    if (name === '') {
+        showError('name', 'Please enter your name.');
+        isValid = false;
+    } else {
+        showSuccess('name');
+    }
+    
+    if (email === '') {
+        showError('email', 'Please enter your email address.');
+        isValid = false;
+    } else if (!isValidEmail(email)) {
+        showError('email', 'Please enter a valid email format (e.g., john@example.com).');
+        isValid = false;
+    } else {
+        showSuccess('email');
+    }
+    
+    if (message === '') {
+        showError('message', 'Please enter your message.');
+        isValid = false;
+    } else {
+        showSuccess('message');
+    }
+    
+    return isValid;
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    const successMsg = document.getElementById('success-msg');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            if (validateForm()) {
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    message: document.getElementById('message').value.trim()
+                };
+                
+                console.log('Form submitted successfully:', formData);
+                
+                contactForm.style.display = 'none';
+                successMsg.classList.add('show');
+                
+                setTimeout(function() {
+                    contactForm.reset();
+                    clearValidation();
+                    successMsg.classList.remove('show');
+                    contactForm.style.display = 'block';
+                }, 5000);
+            } else {
+                console.log('Form validation failed - please check the fields.');
+            }
+        });
+        
+        const fields = ['name', 'email', 'message'];
+        fields.forEach(function(fieldId) {
+            const field = document.getElementById(fieldId);
+            
+            field.addEventListener('blur', function() {
+                const value = field.value.trim();
+                
+                if (fieldId === 'name') {
+                    if (value === '') {
+                        showError('name', 'Please enter your name.');
+                    } else {
+                        showSuccess('name');
+                    }
+                } else if (fieldId === 'email') {
+                    if (value === '') {
+                        showError('email', 'Please enter your email address.');
+                    } else if (!isValidEmail(value)) {
+                        showError('email', 'Please enter a valid email format.');
+                    } else {
+                        showSuccess('email');
+                    }
+                } else if (fieldId === 'message') {
+                    if (value === '') {
+                        showError('message', 'Please enter your message.');
+                    } else {
+                        showSuccess('message');
+                    }
+                }
+            });
+            
+            field.addEventListener('focus', function() {
+                document.getElementById(fieldId + '-error').textContent = '';
+            });
+        });
+    }
+});
