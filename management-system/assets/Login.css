@@ -1,0 +1,155 @@
+html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f3f4f6;
+            width: 100%;
+        }
+
+        .app-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .login-card {
+            background: #ffffff;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 32px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: 700;
+            text-align: center;
+            color: #111827;
+            margin: 0;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.15s ease;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        .input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.1s ease, background 0.2s ease;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1e40af;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .note {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .note a {
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .note a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 28px 24px;
+            }
+            .title {
+                font-size: 22px;
+            }
+        }
