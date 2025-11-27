@@ -15,26 +15,30 @@
             <form class="form">
                 <div class="field">
                     <label>Email</label>
-                    <input id="emailInput" type="email" class="input" placeholder="example@gmail.com">
+                    <input id="emailInput" type="email" class="input" placeholder="example@gmail.com" >
                 </div>
-
+                
                 <div class="field">
                     <label>Mật khẩu</label>
                     <input id="passwordInput" type="password" class="input" placeholder="Nhập mật khẩu...">
                 </div>
-    
+                <p id="error"></p>
                 <div class="actions">
                     <button id="login-btn" type="submit" class="btn btn-primary">
                         Đăng nhập
                     </button>
                 </div>
+                
+                <div class="field">
+                    <label>
+                        <input id="rememberMe" type="checkbox">
+                        Ghi nhớ đăng nhập
+                    </label>
+                </div>
             </form>
-    
-            <p class="note">
-                Chưa có tài khoản?
-                <a href="./Register.html">Đăng ký ngay</a>
-            </p>
+            
         </div>
     </div>
+    <script src="../script/Login.js"></script>
 </body>
 </html>

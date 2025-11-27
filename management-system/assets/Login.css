@@ -91,7 +91,7 @@ html,
             box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
         }
 
-        .error {
+        #error {
             color: #dc2626;
             font-size: 13px;
             text-align: center;
@@ -126,23 +126,6 @@ html,
 
         .btn-primary:active {
             transform: scale(0.98);
-        }
-
-        .note {
-            text-align: center;
-            font-size: 14px;
-            color: #6b7280;
-            margin: 0;
-        }
-
-        .note a {
-            color: #2563eb;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .note a:hover {
-            text-decoration: underline;
         }
 
         @media (max-width: 480px) {

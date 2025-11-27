@@ -31,7 +31,7 @@ addBtn.addEventListener('click', function() {
         todoList.appendChild(li);
 
         todoInput.value = '';
-
+        todoInput.focus();
 
     }
 }
