@@ -12,7 +12,7 @@ addButton.addEventListener('click', () => {
         row.innerHTML = `
             <td>${rowCount + 1}</td>
             <td>${name}</td>
-            <td>$${price.toFixed(2)}</td>
+            <td>${price}</td>
             <td><button class="btn-delete">Delete</button></td>
         `;
         productList.appendChild(row);
