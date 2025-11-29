@@ -3,33 +3,170 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>📊 Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../assets/Dashboard.css">
 </head>
 
 <body>
-    <div class="dashboard">
-        <div class="widget event">
-            <h2>Tổng số sự kiện</h2>
-            <p>120</p>
-        </div>
-        <div class="widget user">
-            <h2>Tổng số người dùng</h2>
-            <p>5000</p>
-        </div>
-        <div class="widget ticket">
-            <h2>Số vé đã đặt trong ngày</h2>
-            <p>350</p>
-        </div>
-    </div>
-    
-    <div class="menu">
+    <div class="sidebar">
+        <h1>Dashboard</h1>
         <nav>
-            <a href="Events.html">Quản lý sự kiện</a>
-            <a href="Users.html">Quản lý người dùng</a>
-            <a href="Tickets.html">Quản lý vé</a>
+            <a onclick="showSection('events')" id="nav-events">Quản lý sự kiện</a>
+            <a onclick="showSection('users')" id="nav-users">Quản lý người dùng</a>
+            <a onclick="showSection('tickets')" id="nav-tickets">Quản lý vé</a>
         </nav>
     </div>
+
+    <div class="main-content">
+        <div class="dashboard">
+            <div class="widget event">
+                <h2>Tổng số sự kiện</h2>
+                <p id="total-events">0</p>
+            </div>
+            <div class="widget user">
+                <h2>Tổng số người dùng</h2>
+                <p id="total-users">0</p>
+            </div>
+            <div class="widget ticket">
+                <h2>Số vé đã đặt</h2>
+                <p id="total-tickets">0</p>
+            </div>
+        </div>
+
+        <div id="section-events" class="content-section">
+            <h2>Quản lý sự kiện</h2>
+            <div class="form-title" id="event-form-title">Thêm sự kiện mới</div>
+            <form id="event-form" onsubmit="return false;">
+                <input type="hidden" id="event-id">
+                <div class="form-group">
+                    <label>Tên sự kiện</label>
+                    <input type="text" id="event-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Ngày diễn ra</label>
+                    <input type="date" id="event-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Địa điểm</label>
+                    <input type="text" id="event-location" required>
+                </div>
+                <div class="form-group">
+                    <label>Mô tả</label>
+                    <textarea id="event-description"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="saveEvent()">Lưu</button>
+                <button class="btn btn-secondary" onclick="resetEventForm()">Hủy</button>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sự kiện</th>
+                        <th>Ngày</th>
+                        <th>Địa điểm</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="events-table-body">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="section-users" class="content-section">
+            <h2>Quản lý người dùng</h2>
+            <div class="form-title" id="user-form-title">Thêm người dùng mới</div>
+            <form id="user-form" onsubmit="return false;">
+                <input type="hidden" id="user-id">
+                <div class="form-group">
+                    <label>Tên người dùng</label>
+                    <input type="text" id="user-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="user-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="tel" id="user-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Vai trò</label>
+                    <select id="user-role">
+                        <option>Người dùng</option>
+                        <option>Quản trị viên</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="saveUser()">Lưu</button>
+                <button class="btn btn-secondary" onclick="resetUserForm()">Hủy</button>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Vai trò</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="users-table-body">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="section-tickets" class="content-section">
+            <h2>Quản lý vé</h2>
+            <div class="form-title" id="ticket-form-title">Thêm vé mới</div>
+            <form id="ticket-form" onsubmit="return false;">
+                <input type="hidden" id="ticket-id">
+                <div class="form-group">
+                    <label>Sự kiện</label>
+                    <input type="text" id="ticket-event" required>
+                </div>
+                <div class="form-group">
+                    <label>Loại vé</label>
+                    <select id="ticket-type">
+                        <option>VIP</option>
+                        <option>Thường</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Giá vé</label>
+                    <input type="number" id="ticket-price" required>
+                </div>
+                <div class="form-group">
+                    <label>Số lượng đã bán</label>
+                    <input type="number" id="ticket-sold" required>
+                </div>
+                <button class="btn btn-primary" onclick="saveTicket()">Lưu</button>
+                <button class="btn btn-secondary" onclick="resetTicketForm()">Hủy</button>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Sự kiện</th>
+                        <th>Loại vé</th>
+                        <th>Giá</th>
+                        <th>Đã bán</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="tickets-table-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../script/dashboard.js"></script>
+    <script src="../script/event.js"></script>
+    <script src="../script/ticket.js"></script>
+    <script src="../script/user.js"></script>
 </body>
 
 </html>
