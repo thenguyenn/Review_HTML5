@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./user-management.css">
+</head>
+<body>
+    <h1>Nhập thông tin người dùng</h1>
+    <form>
+        <label for="username">Tên người dùng</label>
+        <input type="text" id="username" placeholder="Nhập tên người dùng" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Nhập email" required>
+        <button id="btn-add" type="button">Thêm</button>
+    </form>
+    <h2>Danh sách người dùng</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên người dùng</th>
+                <th>Email</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="user-list">
+        </tbody>
+</body>
+    <script src="./user-management.js"></script>
+</html>
