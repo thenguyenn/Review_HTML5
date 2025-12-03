@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Đặt Vé Sự Kiện</title>
+    <link rel="stylesheet" href="../assets/Home.css">
+        
+</head>
+
+<body>
+    <div class="header">
+        <h1>🎫 Đặt Vé Sự Kiện</h1>
+        <div class="header-right">
+            <div class="user-info" id="user-name"></div>
+            <button class="cart-btn" onclick="openCart()">
+                🛒 Giỏ Hàng
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+            <button class="logout-btn" onclick="logout()">Đăng Xuất</button>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Tìm kiếm sự kiện..." onkeyup="filterEvents()">
+        <select id="category-filter" onchange="filterEvents()">
+            <option value="">Tất cả danh mục</option>
+        </select>
+    </div>
+
+    <div class="events-container" id="events-container"></div>
+
+    <!-- Modal Chi Tiết -->
+    <div id="detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDetail()">&times;</span>
+            <div id="detail-content"></div>
+        </div>
+    </div>
+
+    <!-- Modal Giỏ Hàng -->
+    <div id="cart-modal" class="modal cart-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Giỏ Hàng Của Bạn</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                Tổng tiền: <span id="cart-total">0đ</span>
+            </div>
+            <button class="btn-checkout" onclick="proceedToCheckout()">Tiến Hành Thanh Toán</button>
+        </div>
+    </div>
+
+    <!-- Modal Thanh Toán -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCheckout()">&times;</span>
+            <h2>Thông Tin Thanh Toán</h2>
+            <div class="checkout-form">
+                <div class="form-group">
+                    <label>Họ và Tên</label>
+                    <input type="text" id="checkout-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="checkout-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Số Điện Thoại</label>
+                    <input type="tel" id="checkout-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Phương Thức Thanh Toán</label>
+                    <select id="payment-method">
+                        <option value="cash">Tiền Mặt</option>
+                        <option value="card">Thẻ Tín Dụng</option>
+                        <option value="banking">Chuyển Khoản</option>
+                    </select>
+                </div>
+                <div class="cart-total">
+                    Tổng tiền: <span id="checkout-total">0đ</span>
+                </div>
+                <button class="btn-checkout" onclick="completeCheckout()">Xác Nhận Thanh Toán</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../script/home.js"></script>
+</body>
+
+</html>

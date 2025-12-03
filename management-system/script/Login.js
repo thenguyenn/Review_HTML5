@@ -16,12 +16,6 @@ const users = [
         name: 'Regular User',
         role: 'User'
     },
-    {
-        email: 'test@gmail.com',
-        password: 'test123',
-        name: 'Test User',
-        role: 'Tester'
-    }
 ];
 
 loginBtn.addEventListener('click', function(e) {
@@ -34,12 +28,18 @@ loginBtn.addEventListener('click', function(e) {
 
     if (user) {
         errorMsg.textContent = '';
-
+        
+        // Save logged in user to localStorage
         localStorage.setItem('loggedInUser', JSON.stringify(user));
 
         console.log(`Đăng nhập thành công! Chào mừng ${user.name} (${user.role})`);
 
-        window.location.href = '../page/Dashboard.html';
+        // Redirect based on role
+        if (user.role === 'Admin') {
+            window.location.href = '../page/Dashboard.html';
+        } else if (user.role === 'User') {
+            window.location.href = '../page/Home.html';
+        }
     } else {
         errorMsg.textContent = 'Email hoặc mật khẩu không đúng.';
         errorMsg.style.color = 'red';

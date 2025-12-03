@@ -2,6 +2,7 @@ const userInput = document.getElementById('username');
 const emailInput = document.getElementById('email');
 const addUserButton = document.getElementById('btn-add');
 const userList = document.getElementById('user-list');
+const roleSelect = document.getElementById('role');
 
 let users = [];
 
@@ -34,6 +35,7 @@ function renderUsers() {
             <td>${index + 1}</td>
             <td>${user.username}</td>
             <td>${user.email}</td>
+            <td>${user.role || 'user'}</td>
             <td><button class="btn-delete" data-index="${index}">Delete</button></td>
         `;
         userList.appendChild(row);
